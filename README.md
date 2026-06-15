@@ -217,6 +217,57 @@ Browser → Frontend (Static Site)
          Qdrant Cloud
 ```
 
+## Deploy no Firebase + Backend separado
+
+O Firebase Hosting só serve arquivos estáticos — o backend Python **não pode** rodar no Firebase Functions (só Node.js). Solução: frontend no Firebase, backend em qualquer lugar que suporte Python (Render, Railway, Cloud Run).
+
+### Arquitetura
+
+```
+Firebase Hosting (frontend React)
+       │
+       ▼  (requisições HTTP para /api/*)
+Backend Python → Render / Railway / Cloud Run
+       │
+       ▼
+Qdrant Cloud
+```
+
+### 1. Frontend no Firebase Hosting
+
+```bash
+npm install -g firebase-tools
+firebase login
+firebase init hosting
+# Use "frontend/dist" como public directory
+# Configure como SPA (rewrite all to index.html)
+```
+
+Já existe `firebase.json` no repositório com a configuração pronta.
+
+Build e deploy:
+```bash
+cd frontend
+VITE_API_URL=https://seu-backend.onrender.com npm run build
+cd ..
+firebase deploy --only hosting
+```
+
+### 2. GitHub Actions (automático)
+O arquivo `.github/workflows/firebase-deploy.yml` já está configurado. Basta adicionar os secrets no GitHub:
+- `FIREBASE_SERVICE_ACCOUNT` — chave JSON do Firebase (Project Settings > Service Accounts)
+- `FIREBASE_PROJECT_ID` — ID do seu projeto Firebase
+- `VITE_API_URL` — URL do backend
+
+### 3. Backend
+O backend continua precisando de um servidor Python. Opções:
+- **Render** (recomendado): siga as instruções da seção anterior apenas para o backend
+- **Cloud Run** (GCP): dockeriza e faz deploy
+- **Railway**: igual ao Render
+
+### 4. Qdrant
+Use o [Qdrant Cloud](https://cloud.qdrant.io) (1GB free).
+
 ## Preparado para
 
 - Multiplos fluxogramas simultaneos
