@@ -11,23 +11,9 @@ export default function UploadZone({ onUpload, isLoading }: UploadZoneProps) {
   const [uploadStatus, setUploadStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [statusMessage, setStatusMessage] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+  const dragCounter = useRef(0);
 
-  const handleDrag = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.type === 'dragenter' || e.type === 'dragover') setDragActive(true);
-    if (e.type === 'dragleave') setDragActive(false);
-  }, []);
-
-  const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-    const files = e.dataTransfer.files;
-    if (files.length > 0) handleFile(files[0]);
-  }, []);
-
-  const handleFile = async (file: File) => {
+  const handleFile = useCallback(async (file: File) => {
     if (!file.name.endsWith('.drawio') && !file.name.endsWith('.xml')) {
       setUploadStatus('error');
       setStatusMessage('Formato inválido. Use arquivos .drawio ou .xml.');
@@ -45,7 +31,41 @@ export default function UploadZone({ onUpload, isLoading }: UploadZoneProps) {
       setUploadStatus('idle');
       setStatusMessage('');
     }, 4000);
-  };
+  }, [onUpload]);
+
+  const handleDragEnter = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dragCounter.current++;
+    if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
+      setDragActive(true);
+    }
+  }, []);
+
+  const handleDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dragCounter.current--;
+    if (dragCounter.current === 0) {
+      setDragActive(false);
+    }
+  }, []);
+
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  }, []);
+
+  const handleDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    dragCounter.current = 0;
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      handleFile(files[0]);
+    }
+  }, [handleFile]);
 
   return (
     <div className="space-y-3">
@@ -53,9 +73,9 @@ export default function UploadZone({ onUpload, isLoading }: UploadZoneProps) {
         className={`upload-zone cursor-pointer ${dragActive ? 'active' : ''} ${
           isLoading ? 'opacity-50 pointer-events-none' : ''
         }`}
-        onDragEnter={handleDrag}
-        onDragLeave={handleDrag}
-        onDragOver={handleDrag}
+        onDragEnter={handleDragEnter}
+        onDragLeave={handleDragLeave}
+        onDragOver={handleDragOver}
         onDrop={handleDrop}
         onClick={() => inputRef.current?.click()}
       >

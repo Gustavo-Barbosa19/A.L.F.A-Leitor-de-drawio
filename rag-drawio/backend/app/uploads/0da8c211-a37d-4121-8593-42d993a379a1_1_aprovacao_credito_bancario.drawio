@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" version="21.0.0">
+  <diagram name="Aprovação de Crédito Bancário" id="credito-bancario">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" pageWidth="1169" pageHeight="827">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="2" value="INÍCIO&#xa;Solicitação de Crédito" style="ellipse;fillColor=#001f5b;fontColor=#ffffff;strokeColor=#001f5b;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="480" y="30" width="180" height="60" as="geometry"/></mxCell>
+        <mxCell id="3" value="Receber dados do cliente&#xa;(CPF, renda, histórico)" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="455" y="140" width="230" height="55" as="geometry"/></mxCell>
+        <mxCell id="4" value="Consultar CPF no&#xa;Serasa / SPC / Boa Vista" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="455" y="245" width="230" height="55" as="geometry"/></mxCell>
+        <mxCell id="5" value="CPF possui&#xa;restrição ativa?" style="rhombus;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="440" y="350" width="260" height="90" as="geometry"/></mxCell>
+        <mxCell id="6" value="RECUSAR CRÉDITO&#xa;Notificar cliente" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="760" y="365" width="190" height="55" as="geometry"/></mxCell>
+        <mxCell id="7" value="Calcular Score de Crédito&#xa;(modelo interno)" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="455" y="490" width="230" height="55" as="geometry"/></mxCell>
+        <mxCell id="8" value="Score ≥ 700?" style="rhombus;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="450" y="595" width="240" height="80" as="geometry"/></mxCell>
+        <mxCell id="9" value="Score entre&#xa;400 e 699?" style="rhombus;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="760" y="600" width="210" height="80" as="geometry"/></mxCell>
+        <mxCell id="10" value="Aprovação Automática&#xa;Limite integral liberado" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="160" y="610" width="210" height="55" as="geometry"/></mxCell>
+        <mxCell id="11" value="Análise Manual&#xa;por Analista de Crédito" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="760" y="730" width="210" height="55" as="geometry"/></mxCell>
+        <mxCell id="12" value="Score &lt; 400&#xa;RECUSAR" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1010" y="610" width="160" height="55" as="geometry"/></mxCell>
+        <mxCell id="13" value="Analista aprova&#xa;com restrições?" style="rhombus;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="745" y="840" width="240" height="90" as="geometry"/></mxCell>
+        <mxCell id="14" value="Verificar capacidade&#xa;de pagamento (renda x dívidas)" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="455" y="730" width="230" height="55" as="geometry"/></mxCell>
+        <mxCell id="15" value="Comprometimento&#xa;de renda ≤ 30%?" style="rhombus;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="440" y="840" width="260" height="90" as="geometry"/></mxCell>
+        <mxCell id="16" value="Aprovado com&#xa;limite reduzido" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1"><mxGeometry x="760" y="990" width="200" height="55" as="geometry"/></mxCell>
+        <mxCell id="17" value="RECUSAR por&#xa;risco alto" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1"><mxGeometry x="160" y="855" width="190" height="55" as="geometry"/></mxCell>
+        <mxCell id="18" value="Definir limite de crédito&#xa;e taxa de juros" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="455" y="990" width="230" height="55" as="geometry"/></mxCell>
+        <mxCell id="19" value="Gerar contrato digital&#xa;e enviar para assinatura" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="455" y="1095" width="230" height="55" as="geometry"/></mxCell>
+        <mxCell id="20" value="Cliente assinou&#xa;o contrato?" style="rhombus;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="440" y="1200" width="260" height="80" as="geometry"/></mxCell>
+        <mxCell id="21" value="Aguardar 5 dias úteis.&#xa;Reenviar notificação" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="760" y="1210" width="200" height="55" as="geometry"/></mxCell>
+        <mxCell id="22" value="Liberar crédito na conta&#xa;do cliente" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="455" y="1340" width="230" height="55" as="geometry"/></mxCell>
+        <mxCell id="23" value="Registrar operação no&#xa;sistema e BC" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="455" y="1445" width="230" height="55" as="geometry"/></mxCell>
+        <mxCell id="24" value="FIM" style="ellipse;fillColor=#001f5b;fontColor=#ffffff;strokeColor=#001f5b;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="505" y="1550" width="130" height="55" as="geometry"/></mxCell>
+        <!-- edges -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="2" target="3" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="3" target="4" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="4" target="5" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" value="Sim" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;" edge="1" source="5" target="6" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" value="Não" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;" edge="1" source="5" target="7" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="7" target="8" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" value="Sim" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;" edge="1" source="8" target="10" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" value="Não" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;" edge="1" source="8" target="9" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e9" value="Sim" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;" edge="1" source="9" target="11" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e10" value="Não" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;" edge="1" source="9" target="12" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="11" target="13" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e12" value="Sim" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;" edge="1" source="13" target="16" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e13" value="Não" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;" edge="1" source="13" target="12" parent="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1090" y="885"/><mxPoint x="1090" y="637"/></Array></mxGeometry></mxCell>
+        <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="10" target="14" parent="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="265" y="665"/><mxPoint x="265" y="757"/><mxPoint x="455" y="757"/></Array></mxGeometry></mxCell>
+        <mxCell id="e15" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="14" target="15" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e16" value="Sim" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;" edge="1" source="15" target="18" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e17" value="Não" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;" edge="1" source="15" target="17" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e18" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="16" target="18" parent="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="860" y="1045"/><mxPoint x="685" y="1045"/></Array></mxGeometry></mxCell>
+        <mxCell id="e19" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="18" target="19" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e20" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="19" target="20" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e21" value="Sim" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;" edge="1" source="20" target="22" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e22" value="Não" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;" edge="1" source="20" target="21" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e23" value="Reenviar" style="edgeStyle=orthogonalEdgeStyle;fontStyle=2;" edge="1" source="21" target="19" parent="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1010" y="1237"/><mxPoint x="1010" y="1122"/><mxPoint x="685" y="1122"/></Array></mxGeometry></mxCell>
+        <mxCell id="e24" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="22" target="23" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e25" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="23" target="24" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
