@@ -1,0 +1,15 @@
+node_modules
+__pycache__
+*.pyc
+.git
+.env
+venv
+.vscode
+.idea
+*.drawio
+*.xml
+backend/app/uploads
+frontend/src
+frontend/node_modules
+frontend/public
+frontend/package-lock.json

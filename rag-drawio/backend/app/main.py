@@ -3,6 +3,7 @@ import uvicorn
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -38,9 +39,14 @@ app.add_middleware(
 app.include_router(router, prefix="/api")
 
 
-@app.get("/")
-async def root():
-    return {"message": "IA RAG - Leitor de Draw.io", "status": "online", "docs": "/docs"}
+# Serve frontend static files in production
+FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "dist")
+if os.path.isdir(FRONTEND_DIR):
+    app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
+else:
+    @app.get("/")
+    async def root():
+        return {"message": "IA RAG - Leitor de Draw.io", "status": "online", "docs": "/docs"}
 
 
 if __name__ == "__main__":
