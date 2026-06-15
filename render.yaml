@@ -32,7 +32,7 @@ services:
   # ============================================
   # Frontend - React Static Site
   # ============================================
-  - type: static
+  - type: web
     name: rag-drawio-frontend
     region: ohio
     buildCommand: cd frontend && npm install && npx vite build
