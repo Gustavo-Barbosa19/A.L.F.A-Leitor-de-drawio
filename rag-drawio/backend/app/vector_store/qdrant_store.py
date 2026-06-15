@@ -8,6 +8,7 @@ from qdrant_client.http.models import Distance, VectorParams, PointStruct, Filte
 
 QDRANT_HOST = os.getenv("QDRANT_HOST", "localhost")
 QDRANT_PORT = int(os.getenv("QDRANT_PORT", "6333"))
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY", "")
 QDRANT_COLLECTION = os.getenv("QDRANT_COLLECTION", "drawio_flows")
 
 
@@ -21,7 +22,11 @@ class QdrantStore:
         if self._connected and self.client is not None:
             return
         try:
-            self.client = QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT, timeout=2)
+            kwargs = {"host": QDRANT_HOST, "port": QDRANT_PORT, "timeout": 5}
+            if QDRANT_API_KEY:
+                kwargs["api_key"] = QDRANT_API_KEY
+                kwargs["https"] = True
+            self.client = QdrantClient(**kwargs)
             self.client.get_collections()
             self._connected = True
         except Exception as e:

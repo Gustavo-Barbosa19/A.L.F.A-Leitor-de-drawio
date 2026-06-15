@@ -165,6 +165,58 @@ curl http://localhost:8000/api/graph
 curl http://localhost:8000/api/nodes
 ```
 
+## Deploy na Render
+
+### Pré-requisitos
+1. Conta em [render.com](https://render.com) (GitHub login)
+2. Conta em [Qdrant Cloud](https://cloud.qdrant.io) (free tier — 1GB)
+3. Chave da OpenAI (opcional)
+
+### Passo a passo
+
+#### 1. Qdrant Cloud
+- Crie um cluster free em https://cloud.qdrant.io
+- Copie a **URL** (ex: `https://xxxx-xxxx-xxxx.us-east-1-0.aws.cloud.qdrant.io:6333`)
+- Gere uma **API Key** nas configurações
+
+#### 2. Backend (Web Service)
+1. No Render: **New + Web Service** > connect your GitHub repo
+2. Configuração:
+   - **Name:** `rag-drawio-backend`
+   - **Runtime:** Python
+   - **Build Command:** `pip install -r backend/requirements.txt`
+   - **Start Command:** `cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+   - **Plan:** Free
+3. Environment Variables:
+   - `QDRANT_HOST` = host do Qdrant Cloud (sem porta)
+   - `QDRANT_PORT` = `6333`
+   - `QDRANT_API_KEY` = sua chave do Qdrant Cloud
+   - `OPENAI_API_KEY` = sua chave OpenAI (opcional)
+
+#### 3. Frontend (Static Site)
+1. No Render: **New + Static Site** > connect your GitHub repo
+2. Configuração:
+   - **Name:** `rag-drawio-frontend`
+   - **Build Command:** `cd frontend && npm install && npm run build`
+   - **Publish Directory:** `frontend/dist`
+3. Environment Variable:
+   - `VITE_API_URL` = URL do backend (ex: `https://rag-drawio-backend.onrender.com`)
+
+> **Importante:** Após criar o backend, copie a URL gerada (ex: `https://rag-drawio-backend.onrender.com`) e use como `VITE_API_URL` no frontend.
+
+#### 4. Arquivo render.yaml (opcional)
+O repositório já inclui `render.yaml` com a configuração pronta. No Render, escolha **New + Blueprint** e conecte o repositório — ele cria os dois serviços automaticamente.
+
+### Arquitetura na Render
+
+```
+Browser → Frontend (Static Site)
+              ↓  (requisições HTTP)
+         Backend (Web Service)
+              ↓
+         Qdrant Cloud
+```
+
 ## Preparado para
 
 - Multiplos fluxogramas simultaneos
