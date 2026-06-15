@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+.env
+
+# Node
+node_modules/
+frontend/dist/
+
+# Uploads
+backend/app/uploads/*.drawio
+backend/app/uploads/*.xml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Test files
+backend/test_*.py
+backend/test_*.drawio
